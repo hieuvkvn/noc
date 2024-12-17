@@ -6,7 +6,7 @@
             NocoDB
         </a>
     </div>
-    The Open Source Airtable Alternative <br>
+    1The Open Source Airtable Alternative <br>
 </h1>
 
 <p align="center">
