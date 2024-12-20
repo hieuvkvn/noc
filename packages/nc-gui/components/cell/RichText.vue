@@ -36,6 +36,13 @@ const props = withDefaults(
 
 const emits = defineEmits(['update:value', 'focus', 'blur', 'close'])
 
+// Set options for how Markdown is parsed
+marked.setOptions({
+  breaks: true, // Converts single line breaks to <br> tags
+  gfm: true, // Enable GitHub Flavored Markdown (GFM)
+  sanitize: false, // Allow HTML tags within Markdown
+})
+
 const { fullMode, isFormField, hiddenBubbleMenuOptions } = toRefs(props)
 
 const { appInfo } = useGlobal()
@@ -287,8 +294,8 @@ const setEditorContent = (contentMd: string, focusEndOfDoc?: boolean) => {
   if (!editor.value) return
 
   const selection = editor.value.view.state.selection
-
-  const contentHtml = contentMd ? marked.parse(contentMd.replaceAll('\n', '<br/>')) : '<p></p>'
+  // Replace double newlines with a single newline only if not surrounded by non-alphabetic characters
+  const contentHtml = contentMd ? marked.parse(contentMd.replace(/(?<=\s|[A-Za-z])\n\n(?=\s|[A-Za-z])/g, '\n')) : '<p></p>'
 
   const content = generateJSON(contentHtml, tiptapExtensions)
 
