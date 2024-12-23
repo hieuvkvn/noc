@@ -232,13 +232,17 @@ const PREFETCH_THRESHOLD = 40
 const fetchChunk = async (chunkId: number, isInitialLoad = false) => {
   if (chunkStates.value[chunkId]) return
 
+  const offset = chunkId * CHUNK_SIZE
+  const limit = isInitialLoad ? INITIAL_LOAD_SIZE : CHUNK_SIZE
+
+  if (offset >= totalRows.value) {
+    return
+  }
+
   chunkStates.value[chunkId] = 'loading'
   if (isInitialLoad) {
     chunkStates.value[chunkId + 1] = 'loading'
   }
-  const offset = chunkId * CHUNK_SIZE
-  const limit = isInitialLoad ? INITIAL_LOAD_SIZE : CHUNK_SIZE
-
   try {
     const newItems = await loadData({ offset, limit })
     newItems.forEach((item) => cachedRows.value.set(item.rowMeta.rowIndex, item))
@@ -1514,10 +1518,10 @@ watch(activeCell, (activeCell) => {
   eventBus.emit(SmartsheetStoreEvents.CELL_SELECTED, { rowId, colId: col?.id, val, viewId })
 })
 
-const reloadViewDataHookHandler = async () => {
-  // If the scroll Position is not at the top, scroll to the top
-  // This always loads the first page of data when the view data is reloaded
-  gridWrapper.value?.scrollTo(0, 0)
+const reloadViewDataHookHandler = async (param) => {
+  if (param?.fieldAdd) {
+    gridWrapper.value?.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }
 
   await saveOrUpdateRecords({
     keepNewRecords: true,
@@ -2622,16 +2626,17 @@ watch(vSelectedAllRecords, (selectedAll) => {
       </NcDropdown>
     </div>
 
-    <div class="absolute bottom-12 left-2">
+    <div class="absolute bottom-12 left-2" @click.stop>
       <NcDropdown v-if="isAddingEmptyRowAllowed">
-        <div class="flex">
+        <div class="flex shadow-nc-sm rounded-lg">
           <NcButton
             v-if="isMobileMode"
             v-e="[isAddNewRecordGridMode ? 'c:row:add:grid' : 'c:row:add:form']"
             class="nc-grid-add-new-row"
             size="small"
             type="secondary"
-            @click.stop="onNewRecordToFormClick()"
+            :shadow="false"
+            @click="onNewRecordToFormClick()"
           >
             <div class="flex items-center gap-2">
               <GeneralIcon icon="plus" />
@@ -2644,7 +2649,8 @@ watch(vSelectedAllRecords, (selectedAll) => {
             class="!rounded-r-none !border-r-0 nc-grid-add-new-row"
             size="small"
             type="secondary"
-            @click.stop="isAddNewRecordGridMode ? addEmptyRow() : onNewRecordToFormClick()"
+            :shadow="false"
+            @click="isAddNewRecordGridMode ? addEmptyRow() : onNewRecordToFormClick()"
           >
             <div data-testid="nc-pagination-add-record" class="flex items-center gap-2">
               <GeneralIcon icon="plus" />
@@ -2654,7 +2660,13 @@ watch(vSelectedAllRecords, (selectedAll) => {
               <template v-else> {{ $t('activity.newRecord') }} - {{ $t('objects.viewType.form') }} </template>
             </div>
           </NcButton>
-          <NcButton v-if="!isMobileMode" size="small" class="!rounded-l-none nc-add-record-more-info" type="secondary">
+          <NcButton
+            v-if="!isMobileMode"
+            size="small"
+            class="!rounded-l-none nc-add-record-more-info"
+            type="secondary"
+            :shadow="false"
+          >
             <GeneralIcon icon="arrowUp" />
           </NcButton>
         </div>
@@ -2843,6 +2855,10 @@ watch(vSelectedAllRecords, (selectedAll) => {
       }
       .ant-select-selection-search-input {
         @apply !h-[23px];
+      }
+
+      .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+        @apply !h-auto;
       }
     }
   }
