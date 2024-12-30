@@ -653,6 +653,8 @@
     "lockedByUser": "Locked by {user}"
   },
   "labels": {
+    "enableSnowFall": "Enable Snowfall",
+    "disableSnowFall": "Disable Snowfall",
     "snapshotCreationFailed": "Snapshot creation failed",
     "snapshotCreationFailedDescription": "Failed to create your base snapshot. Try again later.",
     "snapshotCooldownDescription": "Snapshots can only be taken three hours apart.",
@@ -696,7 +698,7 @@
     "addNewLookupHelperText1": "Linkityskentät näyttävät tietoja linkitetyistä tietueista. Valitse tietyt kentät ",
     "addNewLookupHelperText2": " taulukosta lisätäksesi ne hakukentiksi tähän taulukkoon.",
     "formatting": "Muotoilu",
-    "selectAFormatType": "- -Valitse muototyyppi (valinnainen)- -",
+    "selectAFormatType": "- -Select a format type (optional)- -",
     "formatType": "Muototyyppi",
     "toUpload": "ladata tai näyttää",
     "dragFilesHere": "vedä tiedostot tänne",
@@ -805,7 +807,7 @@
     "icon": "Ikoni",
     "max": "Max",
     "enableRichText": "Ota käyttöön muokattu teksti",
-    "idColon": "Id: {id}",
+    "idColon": "FIELD ID: {id}",
     "copiedRecordURL": "Kopioitu tietueen URL",
     "copyRecordURL": "Kopioi tietueen URL",
     "duplicateRecord": "Monista tietue",
@@ -1867,7 +1869,8 @@
       "somethingWentWrong": "Jokin meni pieleen",
       "draggedContentIsNotTypeOfImage": "Raahattava sisältö ei ole kuvatyyppi",
       "fieldToParseImageData": "Kenttä kuvadatan jäsentämiseen",
-      "someOfTheRequiredFieldsAreEmpty": "Jotkut vaaditut kentät ovat tyhjiä"
+      "someOfTheRequiredFieldsAreEmpty": "Jotkut vaaditut kentät ovat tyhjiä",
+      "columnVisibilityUpdateFailed": "Failed to update field visibility"
     },
     "toast": {
       "exportMetadata": "Project Metadata viedään onnistuneesti",

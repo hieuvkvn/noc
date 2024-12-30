@@ -653,6 +653,8 @@
     "lockedByUser": "Locked by {user}"
   },
   "labels": {
+    "enableSnowFall": "Enable Snowfall",
+    "disableSnowFall": "Disable Snowfall",
     "snapshotCreationFailed": "Snapshot creation failed",
     "snapshotCreationFailedDescription": "Failed to create your base snapshot. Try again later.",
     "snapshotCooldownDescription": "Snapshots can only be taken three hours apart.",
@@ -696,7 +698,7 @@
     "addNewLookupHelperText1": "Câmpurile de tip Lookup arată date din înregistrări legate. Selectați câmpuri specifice din ",
     "addNewLookupHelperText2": " tabel pentru a le adăuga ca câmpuri de tip Lookup în acest tabel.",
     "formatting": "Formatare",
-    "selectAFormatType": "- -Selectează un tip de format (opțional)- -",
+    "selectAFormatType": "- -Select a format type (optional)- -",
     "formatType": "Tip de format",
     "toUpload": "de încărcat",
     "dragFilesHere": "trageți fișierele aici",
@@ -805,7 +807,7 @@
     "icon": "Iconiță",
     "max": "Maxim",
     "enableRichText": "Activează text îmbogățit",
-    "idColon": "Id: {id}",
+    "idColon": "FIELD ID: {id}",
     "copiedRecordURL": "URL-ul Înregistrării Copiate",
     "copyRecordURL": "Copiază URL-ul Înregistrării",
     "duplicateRecord": "Înregistrare Duplicat",
@@ -1867,7 +1869,8 @@
       "somethingWentWrong": "Ceva a mers prost",
       "draggedContentIsNotTypeOfImage": "Conținutul tras nu este de tip imagine",
       "fieldToParseImageData": "Câmp pentru a analiza datele imaginii",
-      "someOfTheRequiredFieldsAreEmpty": "Unele câmpuri obligatorii sunt necompletate"
+      "someOfTheRequiredFieldsAreEmpty": "Unele câmpuri obligatorii sunt necompletate",
+      "columnVisibilityUpdateFailed": "Failed to update field visibility"
     },
     "toast": {
       "exportMetadata": "Metadatele bazei au fost exportate cu succes",

@@ -653,6 +653,8 @@
     "lockedByUser": "Gesperrt durch {user}"
   },
   "labels": {
+    "enableSnowFall": "Enable Snowfall",
+    "disableSnowFall": "Disable Snowfall",
     "snapshotCreationFailed": "Erstellen des Snapshots fehlgeschlagen",
     "snapshotCreationFailedDescription": "Projekt-Snapshot konnte nicht erstellt werden. Bitte versuchen Sie es später erneut.",
     "snapshotCooldownDescription": "Snapshots müssen mindestens drei Stunden auseinanderliegen.",
@@ -696,7 +698,7 @@
     "addNewLookupHelperText1": "Referenzfelder zeigen Daten aus verknüpften Datensätzen an. Wählen Sie bestimmte Felder aus ",
     "addNewLookupHelperText2": " Tabelle aus, um sie als Referenzfelder in diese Tabelle hinzuzufügen.",
     "formatting": "Formatierung",
-    "selectAFormatType": "- -Wählen Sie einen Formattyp (optional)- -",
+    "selectAFormatType": "- -Select a format type (optional)- -",
     "formatType": "Formattyp",
     "toUpload": "hochladen",
     "dragFilesHere": "Dateien hierher ziehen",
@@ -805,7 +807,7 @@
     "icon": "Icon",
     "max": "Max",
     "enableRichText": "Rich-Text-Format aktivieren",
-    "idColon": "ID: {id}",
+    "idColon": "FIELD ID: {id}",
     "copiedRecordURL": "Kopierte Datensatz-URL",
     "copyRecordURL": "Datensatz-URL kopieren",
     "duplicateRecord": "Zeile duplizieren",
@@ -1867,7 +1869,8 @@
       "somethingWentWrong": "Etwas ist schief gelaufen",
       "draggedContentIsNotTypeOfImage": "Diese Inhalte sind keine Bilder",
       "fieldToParseImageData": "Feld zum Parsen von Bilddaten",
-      "someOfTheRequiredFieldsAreEmpty": "Einige der erforderlichen Felder sind leer"
+      "someOfTheRequiredFieldsAreEmpty": "Einige der erforderlichen Felder sind leer",
+      "columnVisibilityUpdateFailed": "Failed to update field visibility"
     },
     "toast": {
       "exportMetadata": "Projektmetadaten erfolgreich exportiert",
