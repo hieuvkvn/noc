@@ -123,6 +123,9 @@ const categoriesQuery = computed({
 const getIntegrationsByCategory = (category: IntegrationCategoryType, query: string) => {
   return allIntegrations.filter((i) => {
     const isOssOnly = isEeUI ? !i?.isOssOnly : true
+
+    if (i.hidden) return false
+
     return (
       isOssOnly && filterIntegration(i) && i.type === category && t(i.title).toLowerCase().includes(query.trim().toLowerCase())
     )
@@ -276,10 +279,10 @@ watch(activeViewTab, (value) => {
               <div class="flex-1">
                 <div class="text-sm font-normal text-gray-600 mb-2">
                   <div>
-                    Connect integrations with NocoDB.
-                    <a href="https://docs.nocodb.com/category/integrations" target="_blank" rel="noopener noreferrer"
-                      >Learn more</a
-                    >
+                    {{ $t('msg.connectIntegrations') }}
+                    <a href="https://docs.nocodb.com/category/integrations" target="_blank" rel="noopener noreferrer">{{
+                      $t('msg.learnMore')
+                    }}</a>
                   </div>
                 </div>
                 <div class="flex items-center gap-2 !max-w-[400px]">

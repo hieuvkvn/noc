@@ -43,6 +43,7 @@ const {
   onUidtOrIdTypeChange,
   validateInfos,
   isEdit,
+  isSystem,
   disableSubmitBtn,
   column,
   isAiMode,
@@ -685,7 +686,7 @@ watch(activeAiTab, (newValue) => {
           }"
         >
           <div class="flex items-center gap-3">
-            <div class="flex-1 text-base font-bold text-nc-content-gray">New Field</div>
+            <div class="flex-1 text-base font-bold text-nc-content-gray">{{ $t('general.new') }} {{ $t('objects.field') }}</div>
             <div
               :class="{
                 'cursor-wait': aiLoading,
@@ -717,7 +718,9 @@ watch(activeAiTab, (newValue) => {
           <template v-if="aiAutoSuggestMode">
             <div v-if="!aiIntegrationAvailable" class="flex items-center gap-3 py-2">
               <GeneralIcon icon="alertTriangleSolid" class="!text-nc-content-orange-medium w-4 h-4" />
-              <div class="text-sm text-nc-content-gray-subtle flex-1">{{ $t('title.noAiIntegrationAvailable') }}</div>
+              <div class="text-sm text-nc-content-gray-subtle flex-1">
+                {{ $t('title.noAiIntegrationAvailable') }} {{ $t('objects.field') }}
+              </div>
             </div>
 
             <AiWizardTabs v-else v-model:active-tab="activeAiTab" class="!-mx-5">
@@ -980,6 +983,7 @@ watch(activeAiTab, (newValue) => {
               <!-- Save -->
               <NcButton
                 v-if="aiIntegrationAvailable"
+                v-e="['a:column:ai:add']"
                 html-type="submit"
                 type="primary"
                 theme="ai"
@@ -1013,7 +1017,7 @@ watch(activeAiTab, (newValue) => {
           <input
             ref="antInput"
             v-model="formState.title"
-            :disabled="readOnly || !isFullUpdateAllowed"
+            :disabled="readOnly || !isFullUpdateAllowed || isSystem"
             :placeholder="`${$t('objects.field')} ${$t('general.name').toLowerCase()} ${isEdit ? '' : $t('labels.optional')}`"
             class="flex flex-grow nc-fields-input nc-input-shadow text-sm font-semibold outline-none bg-inherit min-h-6"
             :class="{
@@ -1079,7 +1083,8 @@ watch(activeAiTab, (newValue) => {
                 isKanban ||
                 readOnly ||
                 (isEdit && !!onlyNameUpdateOnEditColumns.includes(column?.uidt)) ||
-                (isEdit && !isFullUpdateAllowed)
+                (isEdit && !isFullUpdateAllowed) ||
+                isSystem
               "
               dropdown-class-name="nc-dropdown-column-type border-1 !rounded-lg border-gray-200"
               :filter-option="filterOption"
@@ -1339,7 +1344,7 @@ watch(activeAiTab, (newValue) => {
               '!pb-4': embedMode,
             }"
           >
-            <NcButton size="small" type="text" @click.stop="triggerDescriptionEnable">
+            <NcButton v-if="!isSystem" size="small" type="text" @click.stop="triggerDescriptionEnable">
               <div class="flex !text-gray-700 items-center gap-2">
                 <GeneralIcon icon="plus" class="h-4 w-4" />
 
@@ -1358,7 +1363,7 @@ watch(activeAiTab, (newValue) => {
               'border-t-1 border-nc-border-gray-medium pt-3': isScrollEnabled,
             }"
           >
-            <NcButton v-if="!enableDescription" size="small" type="text" @click.stop="triggerDescriptionEnable">
+            <NcButton v-if="!enableDescription && !isSystem" size="small" type="text" @click.stop="triggerDescriptionEnable">
               <div class="flex !text-gray-700 items-center gap-2">
                 <GeneralIcon icon="plus" class="h-4 w-4" />
 

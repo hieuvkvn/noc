@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type ViewType, ViewTypes } from 'nocodb-sdk'
+import { type ViewType, ViewTypes, viewTypeAlias } from 'nocodb-sdk'
 
 const { isMobileMode } = useGlobal()
 
@@ -113,6 +113,8 @@ async function onOpenModal({
 }) {
   isOpen.value = false
 
+  $e('c:view:create:topbar', { view: type === 'AI' ? type : viewTypeAlias[type] })
+
   const isDlgOpen = ref(true)
 
   const { close } = useDialog(resolveComponent('DlgViewCreate'), {
@@ -225,7 +227,7 @@ async function onOpenModal({
                 <a-menu-item @click.stop="onOpenModal({ type: ViewTypes.GRID })">
                   <div class="nc-viewlist-submenu-popup-item" data-testid="topbar-view-create-grid">
                     <GeneralViewIcon :meta="{ type: ViewTypes.GRID }" />
-                    Grid
+                    {{ $t('objects.viewType.grid') }}
                   </div>
                 </a-menu-item>
 
@@ -243,20 +245,20 @@ async function onOpenModal({
                       }"
                     >
                       <GeneralViewIcon :meta="{ type: ViewTypes.FORM }" />
-                      Form
+                      {{ $t('objects.viewType.form') }}
                     </div>
                   </a-menu-item>
                 </NcTooltip>
                 <a-menu-item @click="onOpenModal({ type: ViewTypes.GALLERY })">
                   <div class="nc-viewlist-submenu-popup-item" data-testid="topbar-view-create-gallery">
                     <GeneralViewIcon :meta="{ type: ViewTypes.GALLERY }" />
-                    Gallery
+                    {{ $t('objects.viewType.gallery') }}
                   </div>
                 </a-menu-item>
                 <a-menu-item data-testid="topbar-view-create-kanban" @click="onOpenModal({ type: ViewTypes.KANBAN })">
                   <div class="nc-viewlist-submenu-popup-item">
                     <GeneralViewIcon :meta="{ type: ViewTypes.KANBAN }" />
-                    Kanban
+                    {{ $t('objects.viewType.kanban') }}
                   </div>
                 </a-menu-item>
                 <a-menu-item data-testid="topbar-view-create-calendar" @click="onOpenModal({ type: ViewTypes.CALENDAR })">
