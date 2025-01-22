@@ -74,6 +74,8 @@ import TableCurrent from '~icons/nc-icons/table-current'
 import Project from '~icons/nc-icons/project'
 import LookupIcon from '~icons/nc-icons/lookup'
 import FileImageIcon from '~icons/nc-icons/file-image'
+import AutomationIcon from '~icons/nc-icons/automations'
+import AiPlayIcon from '~icons/nc-icons/ai-play'
 
 import PhUsers from '~icons/ph/users'
 import PhUser from '~icons/ph/user'
@@ -222,6 +224,7 @@ import NcCircle from '~icons/nc-icons/circle'
 import NcServer1 from '~icons/nc-icons/server1'
 import NcThumbsUpOutline from '~icons/nc-icons/thumbs-up-outline'
 import NcNocoDB from '~icons/nc-icons/nocodb'
+import NcNocoDB1 from '~icons/nc-icons/nocodb1'
 
 // Sync data
 import NcAppleSolid from '~icons/nc-icons/apple_solid'
@@ -290,6 +293,8 @@ import NcOpenai from '~icons/nc-icons/openai'
 import NcClaude from '~icons/nc-icons/claude'
 import NcOllama from '~icons/nc-icons/ollama'
 import NcGroq from '~icons/nc-icons/groq'
+import NcPosthog from '~icons/nc-icons/posthog'
+import NcNocodbPg from '~icons/nc-icons/nocodb-pg'
 
 // Buttons Icons V2
 
@@ -905,7 +910,8 @@ export const iconMap = {
   cellAi: h(NcCellAi, { stroke: 'transparent' }),
   camera: NcCamera,
   megaPhone: NcMegaPhone,
-  nocodb: NcNocoDB,
+  nocodb: h(NcNocoDB, { stroke: 'transparent' }),
+  nocodb1: h(NcNocoDB1, { stroke: 'transparent' }),
   bulb: NcBulb,
   snow: NcSnow,
 
@@ -1226,6 +1232,8 @@ export const iconMap = {
   claude: NcClaude,
   ollama: NcOllama,
   groq: NcGroq,
+  posthog: h(NcPosthog, { stroke: 'transparent' }),
+  nocodbPg: NcNocodbPg,
   refreshCw: NcRefreshCW,
   iconReddit: NcRedditIcon,
   iconTwitter: NcTwitterIcon,
@@ -1524,6 +1532,7 @@ export const iconMap = {
   ncHeading2: NcHeading2,
   ncHeading3: NcHeading3,
   ncQuote: NcQuote,
+  ncAutomation: AutomationIcon,
   ncWebhook: NcWebhook,
   ncLogoAsanaColored: h(NcLogoAsanaColored, { stroke: 'transparent' }),
   ncLogoAsana: h(NcLogoAsana, { stroke: 'transparent' }),
@@ -1613,6 +1622,7 @@ export const iconMap = {
   ncLogoZendesk: h(NcLogoZendesk, { stroke: 'transparent' }),
   ncLogoZohoColored: h(NcLogoZohoColored, { stroke: 'transparent' }),
   ncLogoZoho: h(NcLogoZoho, { stroke: 'transparent' }),
+  ncAiPlay: AiPlayIcon,
 }
 
 export const getMdiIcon = (type: string): any => {
